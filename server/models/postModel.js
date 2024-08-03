@@ -4,7 +4,7 @@ const { type } = require("os");
 const postSchema = mongoose.Schema({
     postedBy:{
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'User',
+        ref : 'users',
         required : true,
     }, text : {
          type : String,
@@ -12,13 +12,14 @@ const postSchema = mongoose.Schema({
     }, img : {
         type : String,
     }, likes : {
-        type : Number,
-        default : 0,
+        type : [mongoose.Schema.Types.ObjectId],
+        ref : "users",
+        default : [],
     }, replies : [
         {
             userId : {
                 type : mongoose.Schema.Types.ObjectId,
-                ref : 'User',
+                ref : 'users',
                 required : true,
             },
             text : {
