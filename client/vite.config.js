@@ -10,10 +10,10 @@ export default defineConfig({
   // This is done so as to remove cors error
   proxy: {
     "/api": {
-      target: "https://talktime-erub.onrender.com",
-      changeOrigin: true,
-      secure: false,
-      cookieDomainRewrite: "localhost",
+      target: 'https://talktime-erub.onrender.com',
+        changeOrigin: true,
+        secure: false, // Set to true if you have a valid SSL certificate
+        cookieDomainRewrite: 'localhost',
     },
   },
 
