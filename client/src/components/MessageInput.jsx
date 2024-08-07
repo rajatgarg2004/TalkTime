@@ -30,7 +30,7 @@ const MessageInput = ({ setMessages }) => {
 	const { onClose } = useDisclosure();
 	const { handleImageChange, imgUrl, setImgUrl } = usePreviewImg();
 	const [isSending, setIsSending] = useState(false);
-
+    const host = import.meta.env.VITE_HOST_ADDRESS;
 	const handleSendMessage = async (e) => {
 		e.preventDefault();
 		if (!messageText && !imgUrl) return;
@@ -39,7 +39,7 @@ const MessageInput = ({ setMessages }) => {
 		setIsSending(true);
 
 		try {
-			const res = await fetch("http://localhost:5000/api/messages", {
+			const res = await fetch(host + "/api/messages", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -84,7 +84,7 @@ const MessageInput = ({ setMessages }) => {
 	};
 	return (
 		<Flex gap={2} alignItems={"center"}>
-			{/* <form onSubmit={handleSendMessage} style={{ flex: 95 }}>
+			<form onSubmit={handleSendMessage} style={{ flex: 95 }}>
 				<InputGroup>
 					<Input
 						w={"full"}
@@ -125,7 +125,7 @@ const MessageInput = ({ setMessages }) => {
 						</Flex>
 					</ModalBody>
 				</ModalContent>
-			</Modal> */}
+			</Modal>
 		</Flex>
 	);
 };

@@ -5,12 +5,12 @@ import useLogout from "../hooks/useLogout";
 export const SettingsPage = () => {
 	const showToast = useShowToast();
 	const logout = useLogout();
-
+    const host = import.meta.env.VITE_HOST_ADDRESS;
 	const freezeAccount = async () => {
 		if (!window.confirm("Are you sure you want to freeze your account?")) return;
 
 		try {
-			const res = await fetch("http://localhost:5000/api/users/freeze", {
+			const res = await fetch(host+"/api/users/freeze", {
 				method: "PUT",
 				headers: { "Content-Type": "application/json" },
                 credentials : "include"

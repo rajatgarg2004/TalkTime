@@ -40,7 +40,7 @@ const CreatePost = () => {
 	const [loading, setLoading] = useState(false);
 	const [posts, setPosts] = useRecoilState(postsAtom);
 	const { username } = useParams();
-
+	const host = import.meta.env.VITE_HOST_ADDRESS;
 	const handleTextChange = (e) => {
 		const inputText = e.target.value;
 
@@ -57,7 +57,7 @@ const CreatePost = () => {
 	const handleCreatePost = async () => {
 		setLoading(true);
 		try {
-			const res = await fetch("http://localhost:5000/api/posts/create", {
+			const res = await fetch(host + "/api/posts/create", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

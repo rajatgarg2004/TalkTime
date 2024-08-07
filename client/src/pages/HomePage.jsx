@@ -10,13 +10,13 @@ const HomePage = () => {
 	const [posts, setPosts] = useRecoilState(postsAtom);
 	const [loading, setLoading] = useState(true);
 	const showToast = useShowToast();
-
+	const host = import.meta.env.VITE_HOST_ADDRESS;
 	useEffect(() => {
 		const getFeedPosts = async () => {
 			setLoading(true);
 			setPosts([]);
 			try {
-				const res = await fetch("http://localhost:5000/api/posts/feed", {
+				const res = await fetch(host+"/api/posts/feed", {
 					credentials: 'include' 
 				});
 				if (!res.ok) {

@@ -8,7 +8,7 @@ const useFollowUnfollow = (user) => {
 	const [following, setFollowing] = useState(false);
 	const [updating, setUpdating] = useState(false);
 	const showToast = useShowToast();
-
+	const host = import.meta.env.VITE_HOST_ADDRESS;
 	useEffect(() => {
 		if (user && currentUser) {
 			setFollowing(user.followers.includes(currentUser?._id));
@@ -24,7 +24,7 @@ const useFollowUnfollow = (user) => {
 
 		setUpdating(true);
 		try {
-			const res = await fetch(`http://localhost:5000/api/users/follow/${user._id}`, {
+			const res = await fetch(`${host}/api/users/follow/${user._id}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

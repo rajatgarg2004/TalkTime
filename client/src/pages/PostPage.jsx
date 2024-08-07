@@ -18,14 +18,14 @@ const PostPage = () => {
 	const { pid } = useParams();
 	const currentUser = useRecoilValue(userAtom);
 	const navigate = useNavigate();
-
+	const host = import.meta.env.VITE_HOST_ADDRESS;
 	const currentPost = posts[0];
 
 	useEffect(() => {
 		const getPost = async () => {
 			setPosts([]);
 			try {
-				const res = await fetch(`http://localhost:5000/api/posts/${pid}`);
+				const res = await fetch(`${host}/api/posts/${pid}`);
 				const data = await res.json();
 				if (data.error) {
 					showToast("Error", data.error, "error");
@@ -43,7 +43,7 @@ const PostPage = () => {
 		try {
 			if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-			const res = await fetch(`http://localhost:5000/api/posts/${currentPost._id}`, {
+			const res = await fetch(`${host}/api/posts/${currentPost._id}`, {
 				method: "DELETE",
 				credentials: "include",
 			});
