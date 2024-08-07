@@ -48,15 +48,18 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: "User Not Found" });
         }
-
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
-
+        
         if (!isPasswordCorrect) {
             return res.status(400).json({ error: "Invalid Username or Password" });
         }
-
+        
         generateTokenAndSetCookie(user._id, res);
-
+        
+        if(user.isFrozen == true){
+            user.isFrozen = false;
+            await user.save();
+        }
         res.status(200).json({
             _id: user._id,
             name: user.name,
@@ -188,6 +191,51 @@ const getUserProfileById = async (req, res) => {
     }
 };
 
+const getSuggestedUsers = async (req, res) => {
+	try {
+		// exclude the current user from suggested users array and exclude users that current user is already following
+		const userId = req.user._id;
+
+		const usersFollowedByYou = await User.findById(userId).select("following");
+
+		const users = await User.aggregate([
+			{
+				$match: {
+					_id: { $ne: userId },
+				},
+			},
+			{
+				$sample: { size: 10 },
+			},
+		]);
+		const filteredUsers = users.filter((user) => !usersFollowedByYou.following.includes(user._id));
+		const suggestedUsers = filteredUsers.slice(0, 4);
+
+		suggestedUsers.forEach((user) => (user.password = null));
+
+		res.status(200).json(suggestedUsers);
+	} catch (err) {
+		res.status(500).json({ error: err });
+	}
+};
+
+const freezeAccount = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+
+        if (!user) {
+            return res.status(404).json({ error: "User Not Found." });
+        }
+
+        user.isFrozen = true;
+        await user.save();
+
+        res.status(200).json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: err.message || 'Internal Server Error' });
+    }
+};
+
 module.exports = {
     signupUser,
     loginUser,
@@ -195,5 +243,7 @@ module.exports = {
     followUnfollowUser,
     updateUser,
     getUserProfile,
-    getUserProfileById
+    getUserProfileById,
+    getSuggestedUsers,
+    freezeAccount
 };

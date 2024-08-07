@@ -45,7 +45,7 @@ const PostPage = () => {
 
 			const res = await fetch(`http://localhost:5000/api/posts/${currentPost._id}`, {
 				method: "DELETE",
-				credentials : "include",
+				credentials: "include",
 			});
 			const data = await res.json();
 			if (data.error) {
@@ -68,7 +68,6 @@ const PostPage = () => {
 	}
 
 	if (!currentPost) return null;
-	console.log("currentPost", currentPost);
 
 	return (
 		<>
@@ -106,7 +105,7 @@ const PostPage = () => {
 			</Flex>
 
 			<Divider my={4} />
-			{currentPost.replies.map((reply) => (
+			{currentPost.replies?.map((reply) => (
 				<Comment
 					key={reply._id}
 					reply={reply}

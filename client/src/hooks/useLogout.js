@@ -15,7 +15,6 @@ const useLogout = () => {
                 },
             })
             const data = await res.json();
-            console.log(data);
             if (data.error) {
                 showToast("Error", data.error);
                 return;
@@ -24,7 +23,6 @@ const useLogout = () => {
             setUser(null);
         } catch (err) {
             showToast("Error", err);
-            console.log(err);
         }
     }
     return handleLogout;

@@ -22,9 +22,8 @@ import postsAtom from "../atoms/postsAtom";
 
 const Actions = ({ post }) => {
 	const user = useRecoilValue(userAtom);
-	console.log(post);
 
-	const [liked, setLiked] = useState(post?.likes.includes(user?._id) || false);
+	const [liked, setLiked] = useState(post?.likes?.includes(user?._id) || false);
 	const [posts, setPosts] = useRecoilState(postsAtom);
 	const [isLiking, setIsLiking] = useState(false);
 	const [isReplying, setIsReplying] = useState(false);
@@ -110,7 +109,6 @@ const Actions = ({ post }) => {
 	if (!post) {
 		return null;
 	}
-
 	return (
 		<Flex flexDirection='column'>
 			<Flex gap={3} my={2} onClick={(e) => e.preventDefault()}>
@@ -161,7 +159,7 @@ const Actions = ({ post }) => {
 				</Text>
 				<Box w={0.5} h={0.5} borderRadius={"full"} bg={"gray.light"}></Box>
 				<Text color={"gray.light"} fontSize='sm'>
-					{post.likes.length} likes
+					{post?.likes?.length} likes
 				</Text>
 			</Flex>
 

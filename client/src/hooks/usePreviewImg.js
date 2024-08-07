@@ -12,7 +12,7 @@ const usePreviewImg = () => {
 			reader.onloadend = () => {
 				setImgUrl(reader.result);
 			};
-            // Changes image to a base 64 string
+
 			reader.readAsDataURL(file);
 		} else {
 			showToast("Invalid file type", " Please select an image file", "error");

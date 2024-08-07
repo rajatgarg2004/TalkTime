@@ -1,14 +1,17 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-const userRoutes = require("./routes/userRoutes");
-const postRoutes = require("./routes/postRoutes");
+const userRoutes = require("./routes/userRoutes.js");
+const postRoutes = require("./routes/postRoutes.js");
+const messageRoutes = require("./routes/messageRoutes.js");
 const cors = require("cors");
 const {v2} =  require("cloudinary");
+const socketModule = require('./socket/socket.js');
+const app = socketModule.app;
+const httpServer = socketModule.httpServer;
 const cloudinary = v2;
 dotenv.config();
-require("./database/connect");
-const app = express();
+require("./database/connect.js");
 const PORT = process.env.PORT || 5000;
 
 
@@ -32,7 +35,8 @@ cloudinary.config({
 
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
-app.listen(PORT,(err)=>{
+app.use('/api/messages', messageRoutes);
+httpServer.listen(PORT,(err)=>{
     if(err){
         console.log("Erorr ",err);
     }else{

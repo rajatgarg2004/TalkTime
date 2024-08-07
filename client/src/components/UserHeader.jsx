@@ -36,7 +36,7 @@ const UserHeader = ({ user }) => {
 					</Text>
 					<Flex gap={2} alignItems={"center"}>
 						<Text fontSize={"sm"}>{user.username}</Text>
-						<Text fontSize={"xs"} bg={"gray.dark"} color={"gray.light"} p={1} borderRadius={"full"}>
+						<Text fontSize={"xs"} bg={"gray.dark"} color={"white"} p={1} borderRadius={"full"}>
 							TalkTime
 						</Text>
 					</Flex>
@@ -69,7 +69,7 @@ const UserHeader = ({ user }) => {
 
 			{currentUser?._id === user._id && (
 				<Link as={RouterLink} to='/update'>
-					<Button size={"sm"}>Update Profile</Button>
+					<Button size={"sm"} border={"1px"}>Update Profile</Button>
 				</Link>
 			)}
 			{currentUser?._id !== user._id && (
@@ -84,12 +84,9 @@ const UserHeader = ({ user }) => {
 				<Flex gap={2} alignItems={"center"}>
 					<Text color={"gray.light"}>{user.followers.length} followers</Text>
 					<Box w='1' h='1' bg={"gray.light"} borderRadius={"full"}></Box>
-					<Link color={"gray.light"}>instagram.com</Link>
+					<Link color={"gray.light"} as={RouterLink} to="/" >TalkTime.com</Link>
 				</Flex>
 				<Flex>
-					<Box className='icon-container' mr={"1rem"}>
-						<BsInstagram size={24} cursor={"pointer"} />
-					</Box>
 					<Box className='icon-container'>
 						<Menu>
 							<MenuButton>
@@ -110,16 +107,6 @@ const UserHeader = ({ user }) => {
 			<Flex w={"full"}>
 				<Flex flex={1} borderBottom={"1.5px solid white"} justifyContent={"center"} pb='3' cursor={"pointer"}>
 					<Text fontWeight={"bold"}> TalkTime</Text>
-				</Flex>
-				<Flex
-					flex={1}
-					borderBottom={"1px solid gray"}
-					justifyContent={"center"}
-					color={"gray.light"}
-					pb='3'
-					cursor={"pointer"}
-				>
-					<Text fontWeight={"bold"}> Replies</Text>
 				</Flex>
 			</Flex>
 		</VStack>
