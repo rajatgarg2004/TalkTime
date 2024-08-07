@@ -13,7 +13,7 @@ export default defineConfig({
       target: 'https://talktime-erub.onrender.com',
         changeOrigin: true,
         secure: false, // Set to true if you have a valid SSL certificate
-        cookieDomainRewrite: 'localhost',
+        // cookieDomainRewrite: 'localhost',
     },
   },
 

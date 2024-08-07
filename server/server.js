@@ -21,6 +21,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.use(cors({
     origin: ["http://localhost:3000", "https://talk-time-seven.vercel.app", "https://talk-time-git-main-rajats-projects-3a8b2d11.vercel.app" , "https://talk-time-a39cehnh4-rajats-projects-3a8b2d11.vercel.app"],
+    credentials : "true"
   }));
 
 cloudinary.config({
