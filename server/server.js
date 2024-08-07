@@ -19,12 +19,9 @@ app.use(cookieParser());
 app.use(express.json({limit:"50mb"}));
 app.use(express.urlencoded({extended:false}));
 
-const corsOptions = {
-    origin: 'https://talk-time-seven.vercel.app/',
-    credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: ["http://localhost:3000", "https://talk-time-seven.vercel.app", "https://talk-time-git-main-rajats-projects-3a8b2d11.vercel.app" , "https://talk-time-a39cehnh4-rajats-projects-3a8b2d11.vercel.app"],
+  }));
 
 cloudinary.config({
     cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
