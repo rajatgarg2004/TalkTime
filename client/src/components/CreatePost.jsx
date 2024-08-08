@@ -62,19 +62,19 @@ const CreatePost = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ postedBy: user._id, text: postText, img: imgUrl }),
+				body: JSON.stringify({ postedBy: user._id, text: postText||"", img: imgUrl||null }),
 				credentials: 'include',
 			});
 			const data = await res.json();
 
-			if (!data.error) {
+			if (data.error) {
 				showToast("Error", data.error, "error");
 				return;
 			}
             if(username === user.username){
-
                 setPosts([data, ...posts]);
             }
+			showToast("Success", 'Created Post', "success");
 			onClose();
 			setPostText("");
 			setImgUrl("");

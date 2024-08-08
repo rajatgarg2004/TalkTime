@@ -3,7 +3,8 @@ const User = require("../models/userModel");
 const { v2: cloudinary } = require("cloudinary");
 const createPost = async (req, res) => {
     try {
-        const { postedBy, text, img } = req.body;
+        const { postedBy, text } = req.body;
+		let { img } = req.body;
         if (!postedBy || !text) {
             return res.status(400).json({ error: "PostedBy and Text Fields required" });
         }
