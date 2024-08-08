@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://talktime-erub.onrender.com',
+        target: ['https://talktime-erub.onrender.com','http://localhost:5000'],
         changeOrigin: true,
         secure: false, // Set to true if you have a valid SSL certificate
         // cookieDomainRewrite: 'localhost', // Uncomment if necessary

@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon server/server.js",
-    "start" : "NODE_ENV=production node server/server.js",
+    "start": "NODE_ENV=production node server/server.js",
+    "build": "npm run install-all && npm run build-client",
+    "install-all": "npm install && npm install --prefix client",
+    "build-client": "npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
