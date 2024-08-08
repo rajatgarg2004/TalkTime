@@ -8,11 +8,22 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: ['https://talktime-erub.onrender.com','http://localhost:5000'],
+        target: 'http://localhost:5000',
         changeOrigin: true,
-        secure: false, // Set to true if you have a valid SSL certificate
-        // cookieDomainRewrite: 'localhost', // Uncomment if necessary
+        secure: false
       },
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        }
+      },
+      chunkSizeWarningLimit: 5000, // Adjust this to suppress the chunk size warning
     },
   },
 });

@@ -56,7 +56,6 @@ const MessageInput = ({ setMessages }) => {
 				showToast("Error", data.error, "error");
 				return;
 			}
-			console.log(data);
 			setMessages((messages) => [...messages, data]);
 
 			setConversations((prevConvs) => {

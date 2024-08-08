@@ -41,8 +41,7 @@ const Post = ({ post, postedBy }) => {
 		try {
 			e.preventDefault();
 			if (!window.confirm("Are you sure you want to delete this post?")) return;
-
-			const res = await fetch(host+'/api/posts/${post._id}', {
+			const res = await fetch(host+`/api/posts/${post._id}`, {
 				method: "DELETE",
 				credentials : "include",
 			});
