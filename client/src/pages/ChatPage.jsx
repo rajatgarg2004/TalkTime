@@ -19,7 +19,7 @@ const ChatPage = () => {
 	const currentUser = useRecoilValue(userAtom);
 	const showToast = useShowToast();
 	const { socket } = useSocket();
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 
 	useEffect(() => {
 		socket?.on("messagesSeen", ({ conversationId }) => {
@@ -46,7 +46,7 @@ const ChatPage = () => {
 			setLoadingConversations(true);
 
 			try {
-				const res = await fetch(host+"/api/messages/conversations", {
+				const res = await fetch("/api/messages/conversations", {
 					credentials: "include",
 				});
 				const data = await res.json();
@@ -68,7 +68,7 @@ const ChatPage = () => {
 		e.preventDefault();
 		setSearchingUser(true);
 		try {
-			const res = await fetch(`${host}/api/users/profile/${searchText}`);
+			const res = await fetch(`/api/users/profile/${searchText}`);
 			const searchedUser = await res.json();
 			if (searchedUser.error) {
 				showToast("Error", searchedUser.error, "error");

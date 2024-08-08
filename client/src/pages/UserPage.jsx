@@ -14,13 +14,13 @@ const UserPage = () => {
 	const showToast = useShowToast();
 	const [posts, setPosts] = useRecoilState(postsAtom);
 	const [fetchingPosts, setFetchingPosts] = useState(true);
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 	useEffect(() => {
 		const getPosts = async () => {
 			if (!user) return;
 			setFetchingPosts(true);
 			try {
-				const res = await fetch(`${host}/api/posts/user/${username}`);
+				const res = await fetch(`/api/posts/user/${username}`);
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`);
 				}

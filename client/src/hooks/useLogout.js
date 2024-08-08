@@ -6,10 +6,10 @@ import useShowToast from './useShowToast';
 const useLogout = () => {
     const setUser = useSetRecoilState(userAtom);
     const showToast = useShowToast();
-    const host = import.meta.env.VITE_HOST_ADDRESS;
+    const host = "https://talktime-erub.onrender.com";
     const handleLogout = async () => {
         try {
-            const res = await fetch(host+"/api/users/logout", {
+            const res = await fetch("/api/users/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

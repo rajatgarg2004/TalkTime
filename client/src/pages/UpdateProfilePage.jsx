@@ -29,7 +29,7 @@ export default function UpdateProfilePage() {
 	const [updating, setUpdating] = useState(false);
 
 	const showToast = useShowToast();
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 	const { handleImageChange, imgUrl } = usePreviewImg();
 
 	const handleSubmit = async (e) => {
@@ -37,7 +37,7 @@ export default function UpdateProfilePage() {
         if (updating) return;
         setUpdating(true);
         try {
-            const res = await fetch(`${host}/api/users/update/${user._id}`, {
+            const res = await fetch(`/api/users/update/${user._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

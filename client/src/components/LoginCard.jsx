@@ -21,7 +21,7 @@ import { useSetRecoilState } from "recoil";
 import useShowToast from "../hooks/useShowToast";
 import userAtom from "../atoms/userAtom";
 export default function LoginCard() {
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 	const [showPassword, setShowPassword] = useState(false);
 	const setAuthScreen = useSetRecoilState(authScreenAtom);
 	const showToast = useShowToast();
@@ -32,7 +32,7 @@ export default function LoginCard() {
 	const setUser = useSetRecoilState(userAtom);
 	const handleLogin = async () => {
 		try {
-			const res = await fetch(host + '/api/users/login', {
+			const res = await fetch('/api/users/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

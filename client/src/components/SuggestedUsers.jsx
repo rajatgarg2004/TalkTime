@@ -7,12 +7,12 @@ const SuggestedUsers = () => {
 	const [loading, setLoading] = useState(true);
 	const [suggestedUsers, setSuggestedUsers] = useState([]);
 	const showToast = useShowToast();
-    const host = import.meta.env.VITE_HOST_ADDRESS;
+    const host = "https://talktime-erub.onrender.com";
 	useEffect(() => {
 		const getSuggestedUsers = async () => {
 			setLoading(true);
 			try {
-				const res = await fetch(host + "/api/users/suggested",{
+				const res = await fetch("/api/users/suggested",{
                     credentials : "include"
                 });
 				const data = await res.json();

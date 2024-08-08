@@ -30,7 +30,7 @@ const MessageInput = ({ setMessages }) => {
 	const { onClose } = useDisclosure();
 	const { handleImageChange, imgUrl, setImgUrl } = usePreviewImg();
 	const [isSending, setIsSending] = useState(false);
-    const host = import.meta.env.VITE_HOST_ADDRESS;
+    const host = "https://talktime-erub.onrender.com";
 	const handleSendMessage = async (e) => {
 		e.preventDefault();
 		if (!messageText && !imgUrl) return;
@@ -39,7 +39,7 @@ const MessageInput = ({ setMessages }) => {
 		setIsSending(true);
 
 		try {
-			const res = await fetch(host + "/api/messages", {
+			const res = await fetch("/api/messages", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

@@ -18,15 +18,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cookieParser());
 app.use(express.json({limit:"50mb"}));
 app.use(express.urlencoded({extended:false}));
-app.use(cors({
-    origin: [
-      "http://localhost:3000", 
-      "https://talk-time-seven.vercel.app",
-      "https://talk-time-git-main-rajats-projects-3a8b2d11.vercel.app",
-      "https://talk-time-a39cehnh4-rajats-projects-3a8b2d11.vercel.app"
-    ],
-    credentials: true // Allow credentials
-  }));
 
 
 cloudinary.config({

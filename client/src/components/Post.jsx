@@ -17,11 +17,11 @@ const Post = ({ post, postedBy }) => {
 	const currentUser = useRecoilValue(userAtom);
 	const [posts, setPosts] = useRecoilState(postsAtom);
 	const navigate = useNavigate();
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 	useEffect(() => {
 		const getUser = async () => {
 			try {
-				const res = await fetch(host+"/api/users/profileid/" + postedBy);
+				const res = await fetch("/api/users/profileid/" + postedBy);
 				const data = await res.json();
 				if (data.error) {
 					showToast("Error", data.error);
@@ -41,7 +41,7 @@ const Post = ({ post, postedBy }) => {
 		try {
 			e.preventDefault();
 			if (!window.confirm("Are you sure you want to delete this post?")) return;
-			const res = await fetch(host+`/api/posts/${post._id}`, {
+			const res = await fetch(`/api/posts/${post._id}`, {
 				method: "DELETE",
 				credentials : "include",
 			});

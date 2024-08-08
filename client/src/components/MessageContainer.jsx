@@ -17,7 +17,7 @@ const MessageContainer = () => {
     const currUser = useRecoilValue(userAtom);
     const { socket } = useSocket();
     const setConversations = useSetRecoilState(conversationsAtom);
-    const host = import.meta.env.VITE_HOST_ADDRESS;
+    const host = "https://talktime-erub.onrender.com";
     useEffect(() => {
         const handleNewMessage = (message) => {
             if (currConversation._id === message.conversationId) {
@@ -79,7 +79,7 @@ const MessageContainer = () => {
                 if (currConversation.mock) {
                     return;
                 }
-                const res = await fetch(`${host}/api/messages/${currConversation.userId}`, {
+                const res = await fetch(`/api/messages/${currConversation.userId}`, {
                     credentials: 'include',
                 });
                 const data = await res.json();

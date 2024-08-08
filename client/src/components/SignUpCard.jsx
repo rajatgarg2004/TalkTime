@@ -31,12 +31,12 @@ export default function SignupCard() {
 		username : "",
 		password : "",
 	})
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 	const showToast = useShowToast();
 	const setUser = useSetRecoilState(userAtom);
 	const handleSignup = async () => {
 		try {
-			const res = await fetch(host+'/api/users/signup', {
+			const res = await fetch('/api/users/signup', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

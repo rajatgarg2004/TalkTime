@@ -19,7 +19,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
 import postsAtom from "../atoms/postsAtom";
-const host = import.meta.env.VITE_HOST_ADDRESS;
+const host = "https://talktime-erub.onrender.com";
 
 
 const Actions = ({ post }) => {
@@ -39,7 +39,7 @@ const Actions = ({ post }) => {
 		if (isLiking) return;
 		setIsLiking(true);
 		try {
-			const res = await fetch(host + "/api/posts/like/" + post._id, {
+			const res = await fetch( "/api/posts/like/" + post._id, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -80,7 +80,7 @@ const Actions = ({ post }) => {
 		if (isReplying) return;
 		setIsReplying(true);
 		try {
-			const res = await fetch(host + "/api/posts/reply/" + post._id, {
+			const res = await fetch("/api/posts/reply/" + post._id, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",

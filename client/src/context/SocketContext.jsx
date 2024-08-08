@@ -13,10 +13,9 @@ export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const user = useRecoilValue(userAtom);
     const [onlineUsers, setOnlineUsers] = useState([]);
-    const host = import.meta.env.VITE_HOST_ADDRESS;
     useEffect(() => {
         if (user?._id) {
-            const newSocket = io(host, {
+            const newSocket = io("/", {
                 query: { userId: user._id },
             });
 

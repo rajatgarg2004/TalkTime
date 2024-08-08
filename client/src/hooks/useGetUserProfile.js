@@ -7,11 +7,11 @@ const useGetUserProfile = () => {
 	const [loading, setLoading] = useState(true);
 	const { username } = useParams();
 	const showToast = useShowToast();
-	const host = import.meta.env.VITE_HOST_ADDRESS;
+	const host = "https://talktime-erub.onrender.com";
 	useEffect(() => {
 		const getUser = async () => {
 			try {
-				const res = await fetch(`${host}/api/users/profile/${username}`);
+				const res = await fetch(`/api/users/profile/${username}`);
 				const data = await res.json();
 				if (data.error) {
 					showToast("Error", data.error, "error");

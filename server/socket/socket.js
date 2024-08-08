@@ -10,14 +10,9 @@ const httpServer = http.createServer(app);
 const userSocketMap = {}
 const io = new Server(httpServer, {
     cors: {
-        origin: [
-            "http://localhost:3000", 
-            "https://talk-time-seven.vercel.app",
-            "https://talk-time-git-main-rajats-projects-3a8b2d11.vercel.app",
-            "https://talk-time-a39cehnh4-rajats-projects-3a8b2d11.vercel.app"
-        ],
-        methods: ["GET", "POST"]
-    }
+		origin: "http://localhost:3000",
+		methods: ["GET", "POST"],
+	},
 });
 const getRecipientSocketId = (recipientId)=>{
     return userSocketMap[recipientId];
